@@ -1,5 +1,9 @@
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import domain.Attendance;
+import domain.AttendanceHistories;
+import domain.AttendanceHistory;
+import domain.AttendanceStatus;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
