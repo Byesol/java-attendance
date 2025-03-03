@@ -2,7 +2,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.Attendance;
-import domain.AttendanceStatus;
+import domain.AttendanceResult;
 import java.time.LocalDateTime;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,9 +25,9 @@ public class CheckAttendanceTest {
         Attendance late = new Attendance(lateTime);
         Attendance absent = new Attendance(absentTime);
         // then
-        assertThat(attendance.getAttendanceStatus()).isEqualTo(AttendanceStatus.ATTEND);
-        assertThat(late.getAttendanceStatus()).isEqualTo(AttendanceStatus.LATE);
-        assertThat(absent.getAttendanceStatus()).isEqualTo(AttendanceStatus.ABSENT);
+        assertThat(attendance.getAttendanceResult()).isEqualTo(AttendanceResult.ATTENDANCE);
+        assertThat(late.getAttendanceResult()).isEqualTo(AttendanceResult.LATE);
+        assertThat(absent.getAttendanceResult()).isEqualTo(AttendanceResult.ABSENCE);
 
     }
 
@@ -42,9 +42,9 @@ public class CheckAttendanceTest {
         Attendance late = new Attendance(lateTime);
         Attendance absent = new Attendance(absentTime);
         // then
-        assertThat(attendance.getAttendanceStatus()).isEqualTo(AttendanceStatus.ATTEND);
-        assertThat(late.getAttendanceStatus()).isEqualTo(AttendanceStatus.LATE);
-        assertThat(absent.getAttendanceStatus()).isEqualTo(AttendanceStatus.ABSENT);
+        assertThat(attendance.getAttendanceResult()).isEqualTo(AttendanceResult.ATTENDANCE);
+        assertThat(late.getAttendanceResult()).isEqualTo(AttendanceResult.LATE);
+        assertThat(absent.getAttendanceResult()).isEqualTo(AttendanceResult.ABSENCE);
 
     }
 

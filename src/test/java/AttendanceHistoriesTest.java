@@ -3,7 +3,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import domain.Attendance;
 import domain.AttendanceHistories;
 import domain.AttendanceHistory;
-import domain.AttendanceStatus;
+import domain.AttendanceResult;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -81,7 +81,7 @@ public class AttendanceHistoriesTest {
         List<Attendance> aliceAttendances = aliceHistory.getAttendances();
         assertThat(aliceAttendances.size()).isGreaterThan(originalHistories.get("쿠키").size());
         assertThat(aliceAttendances.stream()
-                .anyMatch(attendance -> attendance.getAttendanceStatus() == AttendanceStatus.ABSENT))
+                .anyMatch(attendance -> attendance.getAttendanceResult() == AttendanceResult.ABSENT))
                 .isTrue();
     }
 

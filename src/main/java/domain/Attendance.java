@@ -20,26 +20,26 @@ public class Attendance {
     private static final Set<MonthDay> HOLIDAYS = Set.of(MonthDay.of(12, 25));
 
     private final LocalDateTime attendanceTime;
-    private final AttendanceStatus attendanceStatus;
+    private final AttendanceResult attendanceResult;
 
     public Attendance(LocalDateTime attendanceTime) {
         this.attendanceTime = attendanceTime;
-        this.attendanceStatus = checkAttendanceStatus(attendanceTime);
+        this.attendanceResult = checkAttendanceStatus(attendanceTime);
     }
 
 
-    public AttendanceStatus checkAttendanceStatus(LocalDateTime attendanceTime) {
+    public AttendanceResult checkAttendanceStatus(LocalDateTime attendanceTime) {
         LocalTime startTime = DEFAULT_START_TIME; // 기본 시작 시간
         if (attendanceTime.getDayOfWeek() == DayOfWeek.MONDAY) {
             startTime = MONDAY_START_TIME; // 월요일 시작 시간 적용
         }
         if (LocalTime.from(attendanceTime).isBefore(startTime.plusMinutes(LATE_STANDARD))) {
-            return AttendanceStatus.ATTEND;
+            return AttendanceResult.ATTENDANCE;
         }
         if (LocalTime.from(attendanceTime).isBefore(startTime.plusMinutes(ABSENT_STANDARD))) {
-            return AttendanceStatus.LATE;
+            return AttendanceResult.LATE;
         }
-        return AttendanceStatus.ABSENT;
+        return AttendanceResult.ABSENCE;
     }
 
     public static boolean isOperatingTime(LocalTime attendanceTime) {
@@ -58,7 +58,7 @@ public class Attendance {
         return attendanceTime;
     }
 
-    public AttendanceStatus getAttendanceStatus() {
-        return attendanceStatus;
+    public AttendanceResult getAttendanceResult() {
+        return attendanceResult;
     }
 }
