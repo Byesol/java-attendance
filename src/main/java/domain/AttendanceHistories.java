@@ -51,6 +51,7 @@ public class AttendanceHistories {
     }
 
     public List<AttendanceHistory> getAttendanceHistories() {
+
         return attendanceHistories;
     }
 
@@ -63,5 +64,15 @@ public class AttendanceHistories {
 
     public void addAttendanceHistory(String name, Attendance attendance) {
         findByName(name).addAttendance(attendance);
+    }
+
+    public AbsenceLevel getClassifyAbsenceLevel(String username, LocalDateTime localDateTime) {
+        AttendanceHistory fincAttendanceHistory = findByName(username);
+        return fincAttendanceHistory.getClassifyAbsenceLevel(localDateTime);
+    }
+
+    public Map<AttendanceResult, Integer> getAttendanceAllResult(String username, LocalDateTime localDateTime) {
+        AttendanceHistory attendanceHistory = findByName(username);
+        return attendanceHistory.getAttendanceResultCount(localDateTime);
     }
 }

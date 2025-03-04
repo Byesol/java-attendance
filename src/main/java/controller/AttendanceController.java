@@ -89,7 +89,7 @@ public class AttendanceController {
         String username = inputView.getName();
         LocalDateTime newDate = changeStandardDate(LocalDateTime.now());
         AttendanceHistory attendanceHistory = attendanceHistories.findByName(username);
-        List<AttendanceHistory> beforeAttendanceHistory = List.of(attendanceHistory);
+        List<Attendance> beforeAttendanceHistory = attendanceHistory.getAttendances();
         Map<AttendanceResult, Integer> attendanceAllResult = attendanceHistories.getAttendanceAllResult(username,
                 newDate);
         AbsenceLevel classifyAbsenceLevel = attendanceHistories.getClassifyAbsenceLevel(username, newDate);
@@ -109,4 +109,6 @@ public class AttendanceController {
 //        }).collect(Collectors.toList());
 //        outputVIew.printDangerous(crewDtos);
 //    }
+
+
 }

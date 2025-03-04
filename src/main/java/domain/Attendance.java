@@ -6,7 +6,7 @@ import java.time.LocalTime;
 import java.time.MonthDay;
 import java.util.Set;
 
-public class Attendance {
+public class Attendance implements Comparable<Attendance> {
     public static final LocalTime DEFAULT_START_TIME = LocalTime.of(10, 0);
     public static final LocalTime MONDAY_START_TIME = LocalTime.of(13, 0);
     private static final int LATE_STANDARD = 5;
@@ -61,4 +61,16 @@ public class Attendance {
     public AttendanceResult getAttendanceResult() {
         return attendanceResult;
     }
+
+    public boolean isBeforeHistory(LocalDateTime attendanceTIme) {
+        LocalDateTime standardTime = LocalDateTime.of(attendanceTIme.getYear(), attendanceTIme.getMonthValue(),
+                attendanceTIme.getDayOfMonth(), 0, 0);
+        return attendanceTIme.isBefore(standardTime);
+    }
+
+    @Override
+    public int compareTo(Attendance o) {
+        return this.attendanceTime.compareTo(o.attendanceTime);
+    }
+
 }
